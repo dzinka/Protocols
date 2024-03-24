@@ -24,7 +24,7 @@ def get_info(ip):
         country = results.get('asn_country_code', 'AS country not found')
         return [ip, as_info, description, country]
     except Exception as e:
-        print(f"Error retrieving AS information for {ip}: {e}")
+        return [ip, " ", " ", " "]
 
 
 def main():
@@ -40,8 +40,7 @@ def main():
                 ipv4_matches = re.search(ipv4_pattern, trace)
                 if ipv4_matches:
                     row = get_info(ipv4_matches.group(0))
-                    if row:
-                        table.add_row(row)
+                    table.add_row(row)
                 else:
                     continue
             print(table)
